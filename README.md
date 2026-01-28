@@ -47,4 +47,22 @@ java -jar proxy-1.0.0-SNAPSHOT-jar-with-dependencies.jar --serverHost 127.0.0.1 
 ### 性能测试
 ![这是图片](./test.png "这是图片")
 
+### native
+GraalVM 原生编译（可选）                                                                                          
+                                                                                                                    
+  如果安装了 GraalVM，可以编译为原生可执行文件：                                                                    
+                                                                                                                    
+  mvn clean package -Pnative                                                                                        
+                                                                                                                    
+  运行方式                                                                                                          
+                                                                                                                    
+  启动服务端（公网机器）：                                                                                          
+  java -jar server-1.0.0-SNAPSHOT-jar-with-dependencies.jar --port 8090                                             
+                                                                                                                    
+  启动代理端（内网机器）：                                                                                          
+  java -jar proxy-1.0.0-SNAPSHOT-jar-with-dependencies.jar \                                                        
+    --serverHost 127.0.0.1 \                                                                                        
+    --serverPort 8090 \                                                                                             
+    --configPath ./config.json 
+
 
