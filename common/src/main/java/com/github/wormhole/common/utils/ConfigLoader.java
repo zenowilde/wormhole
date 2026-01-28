@@ -54,7 +54,14 @@ public class ConfigLoader {
         jsonObject.put("serverHost", config.getServerHost());
         jsonObject.put("serverPort", config.getServerPort());
         Map<String, ServiceConfig> map = config.getMap();
-        map.forEach((k, v) -> jsonObject.put(k, JSONObject.toJSON(v)));
+        map.forEach((k, v) -> {
+            // 手动构建 JSON，避免 fastjson ASM 序列化
+            JSONObject serviceJson = new JSONObject();
+            serviceJson.put("ip", v.getIp());
+            serviceJson.put("port", v.getPort());
+            serviceJson.put("mappingPort", v.getMappingPort());
+            jsonObject.put(k, serviceJson);
+        });
         return jsonObject.toJSONString();
     }
 

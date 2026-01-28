@@ -28,10 +28,12 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import lombok.extern.slf4j.Slf4j;
 
 import com.github.wormhole.client.SignalHandler;
 import com.github.wormhole.common.config.ProxyServiceConfig;
 
+@Slf4j
 public class Server {
     private int port;
 
@@ -58,6 +60,7 @@ public class Server {
     }
 
     public void open() {
+        log.info("Wormhole Server starting on port {}", port);
         buildSignalHandler();
         dataTransServer = new DataTransServer(dataTransPort, boss, worker, this);
         dataTransServer.open();
@@ -95,6 +98,7 @@ public class Server {
             boss.shutdownGracefully().syncUninterruptibly();
             worker.shutdownGracefully().syncUninterruptibly();
         }));
+        log.info("Wormhole Server started on port {}", port);
     }
 
     public String buildProxyServer(ProxyServiceConfig config, Channel channel) throws Exception {
