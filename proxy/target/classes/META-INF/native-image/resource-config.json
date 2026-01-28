@@ -1,0 +1,10 @@
+{
+  "resources": {
+    "includes": [
+      {"pattern": "logback.xml"},
+      {"pattern": "META-INF/.*"},
+      {"pattern": "META-INF/native-image/.*"}
+    ]
+  },
+  "bundles": []
+}
