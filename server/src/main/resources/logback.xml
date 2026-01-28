@@ -7,9 +7,9 @@
     </appender>
 
     <!-- Netty 日志级别设为 WARN，减少 DEBUG 输出 -->
-    <logger name="io.netty" level="INFO"/>
+    <logger name="io.netty" level="DEBUG"/>
 
-    <root level="INFO">
+    <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
     </root>
 </configuration>
