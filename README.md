@@ -64,7 +64,6 @@ java -jar proxy-1.0.0-SNAPSHOT-jar-with-dependencies.jar --serverHost 127.0.0.1 
   ```shell
   ./proxy/target/proxy --serverHost 127.0.0.1 --serverPort 8090 --configPath ./config.json                               
   ```                                                                                                                     
-  具体的二进制文件名取决于 pom.xml 中 native-image 的配置。你可以先执行 mvn clean package -Pnative，然后查看 target/      
-  下生成的可执行文件。      
+  具体的二进制文件名取决于 pom.xml 中 native-image 的配置。你可以先执行 mvn clean package -Pnative，然后查看target目录下生成的可执行文件。      
 
 
