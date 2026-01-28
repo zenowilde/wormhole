@@ -48,26 +48,20 @@ java -jar proxy-1.0.0-SNAPSHOT-jar-with-dependencies.jar --serverHost 127.0.0.1 
 ![这是图片](./test.png "这是图片")
 
 ### native
-GraalVM 原生编译（可选）                                                                                          
-                                                                                                                    
-  如果安装了 GraalVM，可以编译为原生可执行文件：                                                                    
-```shell                                                                                                           
-  mvn clean package -Pnative     
-```     
-                                                                                                                    
-  运行方式                                                                                                          
-                                                                                                               
-  启动服务端（公网机器）： 
-  ```shell                                                                                           
-  java -jar server-1.0.0-SNAPSHOT-jar-with-dependencies.jar --port 8090      
-  ```                                       
-                                                                                                                    
-  启动代理端（内网机器）：       
-  ```shell                                                                                     
-  java -jar proxy-1.0.0-SNAPSHOT-jar-with-dependencies.jar \                                                        
-    --serverHost 127.0.0.1 \                                                                                        
-    --serverPort 8090 \                                                                                             
-    --configPath ./config.json 
-  ```  
+1. 编译原生可执行文件（需要安装 GraalVM）             
+  mvn clean package -Pnative                                                                                                 
+2. 运行                                                                                                             
+  
+  编译完成后，会在各模块的 target/ 目录下生成原生可执行文件，直接运行即可（不需要 java -jar）。                                                                                             
+                                                                                                                          
+  # 服务端                                                                                                                
+  ```json
+  ./server/target/server --port 8090                                                                                      
+  ```                                                                                                                        
+  # 代理端                                                                                                            ```json
+  ./proxy/target/proxy --serverHost 127.0.0.1 --serverPort 8090 --configPath ./config.json                               
+  ```                                                                                                                     
+  具体的二进制文件名取决于 pom.xml 中 native-image 的配置。你可以先执行 mvn clean package -Pnative，然后查看 target/      
+  下生成的可执行文件。      
 
 
